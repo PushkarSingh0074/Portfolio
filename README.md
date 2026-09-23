@@ -2,7 +2,7 @@
 
 Personal portfolio of Pushkar Singh, Data Scientist and Machine Learning Engineer.
 
-**Live site:** https://pushkarsingh0074.github.io
+**Live site:** https://pushkarsingh0074.github.io/Portfolio/
 
 ## Featured work
 
