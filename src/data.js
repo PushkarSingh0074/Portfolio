@@ -18,7 +18,7 @@ export const profile = {
     "Open to Data Science, ML Engineering and Applied AI roles — internships now, full-time from 2027.",
   email: "hks20071979@gmail.com",
   github: "https://github.com/PushkarSingh0074",
-  linkedin: "", // TODO: e.g. "https://www.linkedin.com/in/your-handle"
+  linkedin: "https://www.linkedin.com/in/pushkar-singh-048458285",
   resume: "Pushkar_Singh_Resume.pdf",
 };
 
