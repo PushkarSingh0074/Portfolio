@@ -1267,6 +1267,20 @@ p {
   animation: glow 3s ease-in-out infinite;
 }
 
+/* PrepPilot compass */
+.pp {
+  width: 220px;
+  height: 220px;
+  filter: drop-shadow(0 0 18px rgba(90, 98, 228, 0.4));
+}
+
+.pp svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

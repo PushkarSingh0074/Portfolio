@@ -98,7 +98,72 @@ function HarveyHologram() {
   );
 }
 
-const LOGOS = { genesis: GenesisOrb, vision: VisionLogo, harvey: HarveyHologram };
+// PrepPilot: the app's paper-plane tile (web/src/components/Logo.tsx) inside a compass dial, with a small
+// plane flying a dotted route around it.
+const PLANE = "M8 16.6 23.5 9l-4.2 14.6-4.1-4.6-3.6 2.4.6-4.6z";
+
+function PilotCompass() {
+  const ticks = Array.from({ length: 48 }, (_, i) => i);
+  return (
+    <div className="pp float" style={{ "--float": "-7px", animationDuration: "5s" }}>
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <radialGradient id="pp-glow">
+            <stop offset="0" stopColor="#8b91ff" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#5a62e4" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="pp-tile" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#7c83ff" />
+            <stop offset="1" stopColor="#3e47c9" />
+          </linearGradient>
+          <linearGradient id="pp-route" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#a5aaff" stopOpacity="0" />
+            <stop offset="1" stopColor="#a5aaff" />
+          </linearGradient>
+        </defs>
+
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#5a62e4" strokeOpacity="0.3" />
+        {/* compass dial: long ticks at the four points, slowly turning */}
+        <g className="svg-spin spin-cw" style={{ animationDuration: "48s" }}>
+          {ticks.map((i) => (
+            <line
+              key={i}
+              x1="100"
+              y1={i % 12 === 0 ? 7 : 10}
+              x2="100"
+              y2="16"
+              stroke="#a5aaff"
+              strokeOpacity={i % 12 === 0 ? 0.9 : 0.35}
+              strokeWidth={i % 12 === 0 ? 2.2 : 1.2}
+              transform={`rotate(${i * 7.5} 100 100)`}
+            />
+          ))}
+        </g>
+        {/* dashed outer course, turning the other way */}
+        <g className="svg-spin spin-ccw" style={{ animationDuration: "30s" }}>
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#7c83ff" strokeOpacity="0.55" strokeWidth="2" strokeDasharray="22 10 6 10" />
+        </g>
+        {/* the flight: a fading trail and a small plane orbiting the tile */}
+        <g className="svg-spin spin-cw" style={{ animationDuration: "7s" }}>
+          <circle cx="100" cy="100" r="62" fill="none" stroke="#a5aaff" strokeOpacity="0.25" strokeWidth="1.2" strokeDasharray="1.5 6" />
+          <path d="M53 59 A62 62 0 0 1 100 38" fill="none" stroke="url(#pp-route)" strokeWidth="2.5" strokeLinecap="round" />
+          <g transform="translate(100 38) rotate(26) scale(0.9) translate(-15.7 -16.3)">
+            <path d={PLANE} fill="#eef0ff" />
+          </g>
+        </g>
+        <circle className="svg-pulse" cx="100" cy="100" r="46" fill="url(#pp-glow)" />
+        {/* the app's own mark */}
+        <g transform="translate(72 72) scale(1.75)">
+          <rect width="32" height="32" rx="8" fill="url(#pp-tile)" />
+          <path d={PLANE} fill="#ffffff" opacity="0.96" />
+          <path d="M15.2 19 23.5 9l-11.3 8.8" fill="none" stroke="#3e47c9" strokeWidth="1.3" strokeLinejoin="round" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+const LOGOS = { genesis: GenesisOrb, vision: VisionLogo, harvey: HarveyHologram, preppilot: PilotCompass };
 
 export default function ProjectLogo({ name }) {
   const Logo = LOGOS[name];

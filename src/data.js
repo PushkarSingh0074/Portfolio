@@ -1,6 +1,7 @@
 import visionShot from "./assets/visionassist.png";
 import harveyShot from "./assets/harvey.png";
 import genesisShot from "./assets/genesis.png";
+import preppilotShot from "./assets/preppilot.png";
 
 // ---------------------------------------------------------------------------
 // All portfolio content lives in this file. Empty links are hidden
@@ -23,7 +24,7 @@ export const profile = {
 };
 
 export const metrics = [
-  { value: "3", label: "End-to-end AI systems built and deployed" },
+  { value: "4", label: "End-to-end AI systems built and deployed" },
   { value: "6", label: "Models orchestrated in one vision pipeline" },
   { value: "63k+", label: "Lines of Python in a local AI agent" },
   { value: "3,700+", label: "Automated tests across the agent codebase" },
@@ -147,6 +148,45 @@ export const projects = [
       code: "https://github.com/PushkarSingh0074/genesis-prep-ai",
     },
   },
+  {
+    id: "preppilot",
+    logo: "preppilot",
+    title: "PrepPilot",
+    tagline: "Free GATE CS & DA prep app with an AI tutor that cites its sources.",
+    domain: "LLM Applications · RAG · Full-stack",
+    year: "2026",
+    accent: "#5a62e4",
+    summary:
+      "A phone-first study app for GATE CS and GATE DA: a retrieval-augmented tutor that answers from the notes and shows the page it used, all 975 official questions from 2019–2026 explained, 19 subject notes books and exam-pattern mock tests. Live at mypreppilot.in.",
+    keyStack: ["RAG", "pgvector", "multilingual-e5", "FastAPI", "Next.js", "Supabase"],
+    image: preppilotShot,
+    imageAlt: "PrepPilot home page with the AI tutor citing the notes page it used",
+    problem:
+      "GATE aspirants juggle scattered PDFs, unofficial answer keys and generic chatbots that answer confidently without sources. There was no free place with the official papers, explained answers and notes organised by the official syllabus, that also works well on a cheap phone.",
+    approach: [
+      "Retrieval-augmented tutor: questions are embedded with multilingual-e5 (ONNX, int8), matched against notes and papers in Postgres with pgvector, and answered only from the retrieved pages, with the page shown; weak matches return \"not in your notes\" instead of a guess.",
+      "Content pipeline: 15 official papers parsed into 975 questions with explanations checked against the official keys, and 19 subject notes books (30+ pages each) rendered to PDF with Playwright and KaTeX, then split into page images and search chunks.",
+      "Study tools on top: exam-pattern CBT mock tests, topic quizzes, mistake log, flashcards and a day-by-day planner, in English and Hindi.",
+      "LLM calls go through Groq, Gemini and OpenRouter with automatic fallback and per-student daily quotas, so the app stays free to run.",
+    ],
+    engineering: [
+      "FastAPI on Render's free 512 MB tier; heavy PDF processing runs as resumable scripts that skip unchanged files and repair half-finished uploads.",
+      "Supabase Postgres with row-level security on every table; encrypted weekly backups and a daily scheduler on GitHub Actions.",
+      "Next.js 15 on Netlify with incremental regeneration, so new notes go live without a rebuild; cookie-free visit analytics.",
+    ],
+    pipeline: ["Official papers + notes", "Parse · explain", "PDF books", "Pages + embeddings", "pgvector search", "Cited answer"],
+    stack: {
+      "AI / Search": ["RAG", "multilingual-e5 (ONNX)", "pgvector", "Groq", "Gemini"],
+      Backend: ["Python", "FastAPI", "PostgreSQL", "PyMuPDF"],
+      Frontend: ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "KaTeX"],
+      Infra: ["Netlify", "Render", "Supabase", "GitHub Actions"],
+    },
+    links: {
+      live: "https://mypreppilot.in",
+      code: "",
+      note: "Application code private · project page on GitHub: PushkarSingh0074/preppilot",
+    },
+  },
 ];
 
 export const skills = [
@@ -160,7 +200,7 @@ export const skills = [
   },
   {
     group: "Speech & LLMs",
-    items: ["Speech-to-text (Whisper)", "Neural TTS", "Speaker verification", "Local LLMs (llama.cpp)", "Gemini API", "Prompt design"],
+    items: ["Speech-to-text (Whisper)", "Neural TTS", "Speaker verification", "Local LLMs (llama.cpp)", "RAG (pgvector)", "Gemini API", "Prompt design"],
   },
   {
     group: "Languages & Data",
@@ -172,7 +212,7 @@ export const skills = [
   },
   {
     group: "Software",
-    items: ["TypeScript", "JavaScript", "React", "Node.js", "Express"],
+    items: ["TypeScript", "JavaScript", "React", "Next.js", "Node.js", "Express"],
   },
 ];
 
